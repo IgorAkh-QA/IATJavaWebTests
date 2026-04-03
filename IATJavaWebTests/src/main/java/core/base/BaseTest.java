@@ -3,21 +3,29 @@ package core.base;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.PageLoadStrategy;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.InputStream;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static org.openqa.selenium.remote.http.Route.options;
 
 public class BaseTest {
 
     protected static String baseUrl;
 
+
     @BeforeEach
     public void setUp() {
         baseUrl = determineBaseUrl();
+        ChromeOptions options = new ChromeOptions();
+        options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
+        Configuration.browserCapabilities = options;
     }
 
     private static String determineBaseUrl() {
