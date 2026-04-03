@@ -26,7 +26,7 @@ public class AnonymRecoveryTest extends BaseTest {
     @Test
     public void anonymRecoveryByPhoneTest(){
 
-        loginPage.makeAccessToAnonymRecoveryPage();
+        loginPage.accessToPageWithCaptchaAppearsLogic();
         anonymRecoveryPage = new AnonymRecoveryPage();
         anonymRecoveryPage.goToPhoneRecovery();
 
@@ -37,7 +37,7 @@ public class AnonymRecoveryTest extends BaseTest {
 
     @Test
     public void anonymRecoveryByEmailTest(){
-        loginPage.makeAccessToAnonymRecoveryPage();
+        loginPage.accessToPageWithCaptchaAppearsLogic();
         anonymRecoveryPage = new AnonymRecoveryPage();
         anonymRecoveryPage.goToEmailRecovery();
 

@@ -84,7 +84,7 @@ public class LoginPage extends BasePage {
     }
 
     @Step("Ввести некорректно пароль 3 раза")
-    public void makeAccessToAnonymRecoveryPage() {
+    public void accessToPageWithCaptchaAppearsLogic() {
         login("wrongUserName141342", "12");
         sleep(5000);
 
