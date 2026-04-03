@@ -1,13 +1,19 @@
 package core.pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import core.base.AnonymRecoveryPage;
 import core.base.BasePage;
 import io.qameta.allure.Step;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.$$;
 
 public class LoginPage extends BasePage {
 
@@ -20,8 +26,8 @@ public class LoginPage extends BasePage {
     SelenideElement mailRuButton = $(".__mailru");
     SelenideElement yandexButton = $(".__yandex");
     SelenideElement errorMessage = $(".LoginForm-module__error___1xmAD");
-
-
+    SelenideElement goToRecoveryButton = $("a[href*='anonymRecoveryStart']");
+    SelenideElement captchaIframe = $("iframe[src*='not_robot_captcha']");
     {
         verifyPageElements();
     }
@@ -56,6 +62,50 @@ public class LoginPage extends BasePage {
         passwordField.setValue(password);
         loginButton.click();
     }
+
+    @Step("Вводим имя пользователя")
+    public void setUsername(String username){
+        userNameField.setValue(username);
+    }
+
+    @Step("Вводим пароль")
+    public void setPassword(String password) {
+        passwordField.setValue(password);
+    }
+
+    @Step("Нажимаем на кнопку Войти")
+    public void clickLoginButton(){
+        loginButton.click();
+    }
+
+    @Step("Нажимаем на кнопку Восстановить")
+    public void clickToRecoveryButton(){
+        goToRecoveryButton.shouldBe(visible).click();
+    }
+
+    @Step("Ввести некорректно пароль 3 раза")
+    public void makeAccessToAnonymRecoveryPage() {
+        login("wrongUserName141342", "12");
+        sleep(5000);
+
+        if (captchaIframe.exists()) {
+            switchTo().frame(captchaIframe);
+
+            $(".vkc__ModalCardBase-module__container").shouldBe(visible);
+            switchTo().defaultContent();
+            open("https://ok.ru/dk?st.cmd=anonymRecoveryStart");
+            return;
+        }
+
+        for (int i = 0; i < 2; i++) {
+            setPassword("1");
+            clickLoginButton();
+
+            }
+        clickToRecoveryButton();
+        }
+
+
 
     @Step("Переходим на страницу восстановления пароля")
     public void openForgotPasswordPage() {
