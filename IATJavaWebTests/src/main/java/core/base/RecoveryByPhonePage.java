@@ -5,7 +5,6 @@ import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 
 
@@ -20,15 +19,14 @@ public class RecoveryByPhonePage extends BasePage {
 
     private SelenideElement getCodeButton = $("input[type=submit][value='Получить код']");
 
-
-
+    private SelenideElement errorPhoneMessage = $(".input-e");
 
     {
         verifyPageElements();
     }
 
     @Step("Проверяем видимость элементов на странице восстановления пароля")
-    public void verifyPageElements(){
+    public void verifyPageElements() {
         pageTitle.shouldBe(visible).shouldHave(text("Укажите телефон"));
         titleForPhoneNumberInput.shouldBe(visible);
         phoneNumberInput.shouldBe(visible);
@@ -37,9 +35,24 @@ public class RecoveryByPhonePage extends BasePage {
         getCodeButton.shouldBe(visible);
 
     }
-    @Step("Нажимаем на кнопку Получить код")
-    public void getCodeButtonlick(){
-        getCodeButton.click();
+
+    @Step("Выбираем код страны по названию: {countryName}")
+    public String selectCountryByName(String countryName) {
+        countryDropdownSelector.click();
+        SelenideElement countryItem = $(String.format(".country-select_i[data-name='%s']", countryName));
+        countryItem.scrollTo();
+        String countryCode = countryItem.find(".country-select_code").text();
+        countryItem.click();
+        return countryCode;
     }
 
+    @Step("Проверка отображения ошибки с корректным текстом")
+    public String checkErrorAndErrorMessage() {
+        getCodeButton.click();
+        errorPhoneMessage.shouldBe(visible);
+        return errorPhoneMessage.getText();
+
+    }
 }
+
+

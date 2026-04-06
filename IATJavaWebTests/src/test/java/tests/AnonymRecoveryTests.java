@@ -9,13 +9,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class AnonymRecoveryTest extends BaseTest {
+public class AnonymRecoveryTests extends BaseTest {
 
     private static LoginPage loginPage;
     private static AnonymRecoveryPage anonymRecoveryPage;
     private static RecoveryByPhonePage recoveryByPhonePage;
     private static RecoveryByEmailPage recoveryByEmailPage;
+
 
     @BeforeEach
     public void prepare(){
@@ -24,7 +26,7 @@ public class AnonymRecoveryTest extends BaseTest {
     }
 
     @Test
-    public void anonymRecoveryByPhoneTest(){
+    public void anonymRecoveryByPhoneErrorMessageTest(){
 
         loginPage.accessToPageWithCaptchaAppearsLogic();
         anonymRecoveryPage = new AnonymRecoveryPage();
@@ -32,6 +34,12 @@ public class AnonymRecoveryTest extends BaseTest {
 
         recoveryByPhonePage = new RecoveryByPhonePage();
         recoveryByPhonePage.verifyPageElements();
+        String countryCode = recoveryByPhonePage.selectCountryByName("Малайзия");
+        assertEquals("+60", countryCode, "Код страны не совпадает с ожидаемым");
+
+        String actualErrorMessage = recoveryByPhonePage.checkErrorAndErrorMessage();
+        assertEquals("Неправильный номер телефона.", actualErrorMessage);
+
 
     }
 
