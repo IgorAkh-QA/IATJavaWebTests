@@ -1,6 +1,7 @@
 package core.base;
 
 import com.codeborne.selenide.Configuration;
+import core.pages.LoginPage;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.PageLoadStrategy;
@@ -10,6 +11,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static com.codeborne.selenide.Selenide.open;
 import static org.openqa.selenium.remote.http.Route.options;
 
 public class BaseTest {
@@ -26,6 +28,9 @@ public class BaseTest {
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";
         Configuration.browserCapabilities = options;
+
+        open(baseUrl);
+
     }
 
     private static String determineBaseUrl() {
