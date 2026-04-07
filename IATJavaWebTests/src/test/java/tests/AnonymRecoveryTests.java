@@ -1,9 +1,9 @@
 package tests;
 
-import core.base.AnonymRecoveryPage;
+import core.pages.AnonymRecoveryPage;
 import core.base.BaseTest;
-import core.base.RecoveryByEmailPage;
-import core.base.RecoveryByPhonePage;
+import core.pages.RecoveryByEmailPage;
+import core.pages.RecoveryByPhonePage;
 import core.pages.LoginPage;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,7 +21,6 @@ public class AnonymRecoveryTests extends BaseTest {
 
     @BeforeEach
     public void prepare(){
-        open(baseUrl);
         loginPage = new LoginPage();
     }
 
