@@ -15,6 +15,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class GroupsPage extends BasePage {
 
     private SelenideElement userGroupsSearchResultList = $("#userGroupsSearchResultList");
+
     @Step("Проверяем доступность кнопки Создать группу")
     public void verifyUserGroupsSearchResultList(){
         userGroupsSearchResultList.shouldBe(visible);

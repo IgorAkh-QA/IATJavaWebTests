@@ -1,25 +1,20 @@
 package core.base;
 
 import com.codeborne.selenide.Configuration;
-import core.pages.LoginPage;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import java.io.InputStream;
-import java.util.Properties;
+import java.util.Map;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static com.codeborne.selenide.Selenide.open;
-import static org.openqa.selenium.remote.http.Route.options;
 
-public class BaseTest extends AbstractBaseTest{
+public class MobileBaseTest extends AbstractBaseTest{
 
     @Override
     public void configure() {
         ChromeOptions options = new ChromeOptions();
         options.setPageLoadStrategy(PageLoadStrategy.EAGER);
+        options.setExperimentalOption("mobileEmulation", Map.of("deviceName", "Samsung Galaxy S20 Ultra"));
 
         Configuration.browser = "chrome";
         Configuration.browserSize = "1920x1080";

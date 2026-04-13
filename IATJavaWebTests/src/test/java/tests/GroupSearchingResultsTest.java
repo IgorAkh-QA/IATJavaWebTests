@@ -14,7 +14,6 @@ public class GroupSearchingResultsTest extends BaseTest {
     private static LoginPage loginPage;
     private static AnonymHeaderPanelComponent anonymHeaderPanelComponent;
     private static NavBarComponent navBarComponent;
-    private static GroupsPage groupsPage;
     String value = "Тестировщик";
 
     @Test
@@ -34,12 +33,6 @@ public class GroupSearchingResultsTest extends BaseTest {
         navBarComponent = new NavBarComponent();
         navBarComponent.verifyAllNavBarItemsVisible();
         navBarComponent.verifyActiveItem(navBarComponent.groupsItem, "Группы");
-
-
-
-
-
-
     }
 
 }

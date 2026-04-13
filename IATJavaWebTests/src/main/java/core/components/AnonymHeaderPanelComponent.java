@@ -25,8 +25,6 @@ public class AnonymHeaderPanelComponent {
         headerSearchInput.shouldBe(visible);
     }
 
-    //@Step("Получаем отображаемый в результатах предиктивного поиска текст")
-
     @Step("Вводим значение в инпут поиска в хедере")
     public void headerSearchInputSetValue(String value){
         headerSearchInput.setValue(value);
