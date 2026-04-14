@@ -1,24 +1,24 @@
-package tests;
+package tests.web;
 
 
-import core.base.BaseTest;
-import core.components.AnonymHeaderPanelComponent;
-import core.components.NavBarComponent;
-import core.pages.GroupsPage;
-import core.pages.LoginPage;
+import core.base.WebBaseTest;
+import core.components.web.AnonymHeaderPanelComponent;
+import core.components.web.NavBarComponent;
+import core.pages.web.GroupsPageWeb;
+import core.pages.web.LoginPageWeb;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GroupSearchingResultsTest extends BaseTest {
-    private static LoginPage loginPage;
+public class GroupSearchingResultsTestWeb extends WebBaseTest {
+    private static LoginPageWeb loginPage;
     private static AnonymHeaderPanelComponent anonymHeaderPanelComponent;
     private static NavBarComponent navBarComponent;
     String value = "Тестировщик";
 
     @Test
     public void openGroupFromSearchSuggestsTest() {
-        loginPage = new LoginPage();
+        loginPage = new LoginPageWeb();
         loginPage.verifyPageElements();
         anonymHeaderPanelComponent = new AnonymHeaderPanelComponent();
 
@@ -27,7 +27,7 @@ public class GroupSearchingResultsTest extends BaseTest {
         anonymHeaderPanelComponent.verifySearchResults(value);
         anonymHeaderPanelComponent.getSuggestElementByValue(value).click();
 
-        GroupsPage groupsPage = new GroupsPage();
+        GroupsPageWeb groupsPage = new GroupsPageWeb();
         groupsPage.verifyUserGroupsSearchResultList();
 
         navBarComponent = new NavBarComponent();

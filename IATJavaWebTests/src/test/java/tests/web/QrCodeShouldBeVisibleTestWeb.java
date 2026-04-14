@@ -1,18 +1,18 @@
-package tests;
+package tests.web;
 
-import core.base.BaseTest; 
-import core.pages.LoginPage;
+import core.base.WebBaseTest;
+import core.pages.web.LoginPageWeb;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class QrCodeShouldBeVisibleTest extends BaseTest {
-    private static LoginPage loginPage;
+public class QrCodeShouldBeVisibleTestWeb extends WebBaseTest {
+    private static LoginPageWeb loginPage;
     boolean expectedQrCodeVisibility = true;
 
     @Test
     public void qrCodeShouldBeVisibleTest(){
-        loginPage = new LoginPage();
+        loginPage = new LoginPageWeb();
         loginPage.clickQrCodeLoginButton();
         boolean isQrCodeVisible = loginPage.isQrCodeVisible();
         assertEquals(expectedQrCodeVisibility, isQrCodeVisible, "Qr- code не найден на странице");

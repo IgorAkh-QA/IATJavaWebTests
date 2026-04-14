@@ -1,7 +1,6 @@
-package core.components;
+package core.components.web;
 
 import com.codeborne.selenide.SelenideElement;
-import core.pages.GroupsPage;
 import io.qameta.allure.Step;
 
 import java.util.List;

@@ -1,10 +1,7 @@
 package core.base;
 
-import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.PageLoadStrategy;
-import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -30,7 +27,7 @@ public abstract class AbstractBaseTest {
 
         Properties properties = new Properties();
         try (InputStream input =
-                     BaseTest.class.getClassLoader().getResourceAsStream(configFieldName)) {
+                     MobBaseTest.class.getClassLoader().getResourceAsStream(configFieldName)) {
             if (input == null) {
                 throw new IllegalStateException("Configuration file not found: " + configFieldName);
             }

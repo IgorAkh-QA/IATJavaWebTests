@@ -1,7 +1,7 @@
-package core.pages;
+package core.pages.web;
 
 import com.codeborne.selenide.SelenideElement;
-import core.base.BasePage;
+import core.base.WebBasePage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.*;
@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class AnonymRecoveryPage extends BasePage {
+public class AnonymRecoveryPageWeb extends WebBasePage {
     private SelenideElement phoneRecoveryButton = $("[data-l=\"t,phone\"]");
     private SelenideElement emailRecoveryButton = $("[data-l=\"t,email\"]");
     private SelenideElement supportMessageButton = $(".support-link_items");

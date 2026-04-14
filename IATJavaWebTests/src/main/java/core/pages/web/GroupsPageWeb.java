@@ -1,18 +1,13 @@
-package core.pages;
+package core.pages.web;
 
 import com.codeborne.selenide.SelenideElement;
-import core.base.BasePage;
-import core.components.NavBarComponent;
+import core.base.WebBasePage;
 import io.qameta.allure.Step;
-import org.checkerframework.checker.units.qual.N;
-
-import java.util.List;
 
 import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 
-public class GroupsPage extends BasePage {
+public class GroupsPageWeb extends WebBasePage {
 
     private SelenideElement userGroupsSearchResultList = $("#userGroupsSearchResultList");
 

@@ -1,7 +1,7 @@
-package core.pages;
+package core.pages.web;
 
 import com.codeborne.selenide.SelenideElement;
-import core.base.BasePage;
+import core.base.WebBasePage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class RecoveryByPhonePage extends BasePage {
+public class RecoveryByPhonePageWeb extends WebBasePage {
     private SelenideElement pageTitle = $(".ext-registration_h");
 
     private SelenideElement titleForPhoneNumberInput = $("label[for=field_phone]");
