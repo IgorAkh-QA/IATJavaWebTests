@@ -4,8 +4,7 @@ import com.codeborne.selenide.SelenideElement;
 import core.base.WebBasePage;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 
@@ -39,7 +38,7 @@ public class RecoveryByPhonePageWeb extends WebBasePage {
 
     @Step("Выбираем код страны по названию: {countryName}")
     public String selectCountryByName(String countryName) {
-        countryDropdownSelector.click();
+        countryDropdownSelector.shouldBe(clickable).click();
         SelenideElement countryItem = $(String.format(".country-select_i[data-name='%s']", countryName));
         countryItem.scrollTo();
         String countryCode = countryItem.find(".country-select_code").text();
