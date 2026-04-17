@@ -1,16 +1,21 @@
-package core.base;
+package core.pages.web;
 
 import com.codeborne.selenide.SelenideElement;
+import core.base.WebBasePage;
 import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class AnonymRecoveryPage extends BasePage {
+public class AnonymRecoveryPageWeb extends WebBasePage {
     private SelenideElement phoneRecoveryButton = $("[data-l=\"t,phone\"]");
     private SelenideElement emailRecoveryButton = $("[data-l=\"t,email\"]");
     private SelenideElement supportMessageButton = $(".support-link_items");
+    private SelenideElement supportChatWindow = $("support-chat");
+    private SelenideElement exitSupportChatButton = supportChatWindow.$("[name^='ico_close']").closest("button");
+    private SelenideElement confirmExitSupportChatWindowButton = supportChatWindow.$("button").$(withText("Да"));
 
     {
         verifyPageElements();
@@ -34,10 +39,24 @@ public class AnonymRecoveryPage extends BasePage {
     }
 
     @Step("Нажимаем на кнопку перехода к обращения в техническую поддержку")
-    public void goToSupportPage(){
+    public void clickSupportMessageButton(){
         supportMessageButton.click();
     }
 
+    @Step("Проверяем, что окно чата технической поддержки отображается на странице")
+    public boolean isSupportChatVisible(){
+        return supportChatWindow.shouldBe(visible).exists();
+    }
+
+    @Step("Нажимаем на закрытие окна чата с поддержкой")
+    public void clickExitSupportChatButton(){
+        exitSupportChatButton.shouldBe(clickable).click();
+    }
+
+    @Step("Подтверждаем закрытие окна чата с поддержкой")
+    public void clickConfirmExitSupportChatWindowButton(){
+        confirmExitSupportChatWindowButton.shouldBe(interactable).click();
+    }
 
 
 }

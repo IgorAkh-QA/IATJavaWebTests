@@ -1,15 +1,15 @@
-package core.base;
+package core.pages.web;
 
 import com.codeborne.selenide.SelenideElement;
+import core.base.WebBasePage;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.$;
 
 
-public class RecoveryByEmailPage extends BasePage {
+public class RecoveryByEmailPageWeb extends WebBasePage {
 
     private SelenideElement pageTitle = $(".ext-registration_h");
     private SelenideElement emailInput = $("#field_email");

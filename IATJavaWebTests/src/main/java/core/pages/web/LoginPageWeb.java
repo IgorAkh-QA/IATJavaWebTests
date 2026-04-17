@@ -1,25 +1,21 @@
-package core.pages;
+package core.pages.web;
 
-import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import core.base.AnonymRecoveryPage;
-import core.base.BasePage;
+import core.base.WebBasePage;
 import io.qameta.allure.Step;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.List;
 
 import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.$$;
 
-public class LoginPage extends BasePage {
+public class LoginPageWeb extends WebBasePage {
 
     SelenideElement userNameField = $("#field_email");
     SelenideElement passwordField = $("#field_password");
     SelenideElement loginButton = $(".vkuiButton__in").$(withText("Войти"));
+    SelenideElement loginByQrCodeButton = $(byText("Войти по QR-коду"));
     SelenideElement forgotPasswordLink = $("[aria-label=\"Не получается войти?\"]");
     SelenideElement registrationButton = $(".vkuiButton__in");
     SelenideElement vkButton = $(".__vk_id ");
@@ -28,6 +24,8 @@ public class LoginPage extends BasePage {
     SelenideElement errorMessage = $(".LoginForm-module__error___1xmAD");
     SelenideElement goToRecoveryButton = $("a[href*='anonymRecoveryStart']");
     SelenideElement captchaIframe = $("iframe[src*='not_robot_captcha']");
+    SelenideElement qrCodeImage = $(".qr_code_image_wrapper");
+    SelenideElement cantSignInButton = $(byText("Не получается войти?"));
     {
         verifyPageElements();
     }
@@ -37,11 +35,17 @@ public class LoginPage extends BasePage {
         userNameField.shouldBe(visible);
         passwordField.shouldBe(visible);
         loginButton.shouldBe(visible);
+        loginByQrCodeButton.shouldBe(visible);
         forgotPasswordLink.shouldBe(visible);
         registrationButton.shouldBe(visible);
         vkButton.shouldBe(visible);
         mailRuButton.shouldBe(visible);
         yandexButton.shouldBe(visible);
+    }
+
+    @Step("Проверка видимости QR-code")
+    public boolean isQrCodeVisible(){
+        return qrCodeImage.shouldBe(visible).exists();
     }
 
     @Step("Проверка видимости сообщения об ошибке входа")
@@ -77,6 +81,12 @@ public class LoginPage extends BasePage {
     public void clickLoginButton(){
         loginButton.click();
     }
+
+    @Step("Нажимаем на кнопку Войти по QR-коду")
+    public void clickQrCodeLoginButton(){loginByQrCodeButton.click();}
+
+    @Step("Нажимаем кнопку Не получается войти")
+    public void clickCantSignInButton(){cantSignInButton.click();}
 
     @Step("Нажимаем на кнопку Восстановить")
     public void clickToRecoveryButton(){

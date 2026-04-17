@@ -1,23 +1,22 @@
-package tests;
+package tests.web;
 
-import core.base.BaseTest;
-import core.pages.LoginPage;
+import core.base.WebBaseTest;
+import core.pages.web.LoginPageWeb;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.sleep;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class LoginWithWrongCredentialsTest extends BaseTest {
-    private static LoginPage loginPage;
+public class LoginWithWrongCredentialsWebTest extends WebBaseTest {
+    private static LoginPageWeb loginPage;
 
 
     @BeforeEach
     public void prepare() {
         open(baseUrl);
-        loginPage = new LoginPage();
+        loginPage = new LoginPageWeb();
     }
 
     @Test
